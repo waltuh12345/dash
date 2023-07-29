@@ -1,0 +1,40 @@
+@use "../util" as *;
+
+.header {
+  --fs: 12px;
+  --fs-icon: 6px;
+  font-weight: $medium;
+  margin-bottom: 2.5rem;
+  font-size: var(--fs);
+
+  h1 {
+    font-size: var(--fs-subheading);
+  }
+
+  &-toggle {
+    justify-content: space-between;
+    padding-top: 1.4rem;
+    margin-top: 1.5rem;
+    border-top: 0.1rem solid var(--clr-surface);
+    font-size: var(--fs-icon);
+
+    &::before {
+      font-size: var(--fs);
+      color: var(--clr-text);
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-toggle {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,369 @@
+@use "config" as *;
+@use "icon" as *;
+
+.border {
+  border: 2px solid var(--clr-primary);
+  > * {
+    border: 2px solid var(--clr-neutral);
+  }
+}
+
+.toggleWrapper {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &::before {
+    content: "Appearance";
+  }
+
+  & input {
+    position: absolute;
+    left: -80em;
+  }
+
+  .toggle {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 5.5em;
+    height: 3em;
+    background-color: #83d8ff;
+    border-radius: 9.4em;
+    transition: background-color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  .toggle__handler {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    top: 0.25em;
+    left: 0.3em;
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #ffcf96;
+    border-radius: 50px;
+    box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.3);
+    transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: rotate(-45deg);
+  }
+
+  .toggle__handler .crater {
+    position: absolute;
+    background-color: #e8cda5;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    border-radius: 100%;
+  }
+
+  .toggle__handler .crater--1 {
+    top: 1.6em;
+    left: 0.6em;
+    width: 0.4em;
+    height: 0.4em;
+  }
+
+  .toggle__handler .crater--2 {
+    top: 0.6em;
+    left: 1.6em;
+    width: 0.6em;
+    height: 0.6em;
+  }
+
+  .toggle__handler .crater--3 {
+    top: 0.4em;
+    left: 0.5em;
+    width: 0.4em;
+    height: 0.4em;
+  }
+
+  .star {
+    position: absolute;
+    background-color: #fff;
+    transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    border-radius: 50%;
+  }
+
+  .star--1 {
+    top: 0.5em;
+    left: 2em;
+    z-index: 0;
+    width: 1.8em;
+    height: 0.2em;
+  }
+
+  .star--2 {
+    top: 0.8em;
+    left: 1.8em;
+    z-index: 1;
+    width: 2em;
+    height: 0.2em;
+  }
+
+  .star--3 {
+    top: 2em;
+    left: 1.5em;
+    z-index: 0;
+    width: 2em;
+    height: 0.2em;
+  }
+
+  .star--4,
+  .star--5,
+  .star--6 {
+    opacity: 0;
+    transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  .star--4 {
+    top: 1.9em;
+    left: 2em;
+    z-index: 0;
+    width: 0.2em;
+    height: 0.2em;
+    transform: translate3d(1em, 0, 0);
+  }
+
+  .star--5 {
+    top: 1.3em;
+    left: 0.4em;
+    z-index: 0;
+    width: 0.2em;
+    height: 0.2em;
+    transform: translate3d(3px, 0, 0);
+  }
+
+  .star--6 {
+    top: 1.5em;
+    left: 2.5em;
+    z-index: 0;
+    width: 0.2em;
+    height: 0.2em;
+    transform: translate3d(0.3em, 0, 0);
+  }
+
+  input:checked + .toggle {
+    background-color: #749dd6;
+  }
+
+  input:checked + .toggle:before {
+    color: #749ed7;
+  }
+
+  input:checked + .toggle:after {
+    color: #fff;
+  }
+
+  input:checked + .toggle .toggle__handler {
+    background-color: #ffe5b5;
+    transform: translate3d(2.4em, 0, 0) rotate(0);
+  }
+
+  input:checked + .toggle .toggle__handler .crater {
+    opacity: 1;
+  }
+
+  input:checked + .toggle .star--1 {
+    width: 2px;
+    height: 2px;
+  }
+
+  input:checked + .toggle .star--2 {
+    width: 4px;
+    height: 4px;
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  input:checked + .toggle .star--3 {
+    width: 2px;
+    height: 2px;
+    transform: translate3d(-7px, 0, 0);
+  }
+
+  input:checked + .toggle .star--4,
+  input:checked + .toggle .star--5,
+  input:checked + .toggle .star--6 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  input:checked + .toggle .star--4 {
+    transition: all 300ms 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  input:checked + .toggle .star--5 {
+    transition: all 300ms 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  input:checked + .toggle .star--6 {
+    transition: all 300ms 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+}
+
+.child-box-overlay {
+  > * {
+    position: relative;
+
+    &::before {
+      @include bgBeforeAfter(var(--clr-bg), -2);
+    }
+
+    &::after {
+      @include bgBeforeAfter(var(--clr-text), -1);
+      opacity: 0.1;
+    }
+  }
+}
+
+//=====ICONS=====//
+
+.content1-flex {
+  &-box.clr-facebook {
+    @include boxColor(var(--clr-facebook));
+  }
+
+  &-box.clr-twitter {
+    @include boxColor(var(--clr-twitter));
+  }
+
+  &-box.clr-youtube {
+    @include boxColor(var(--clr-youtube));
+  }
+
+  &-box.clr-instagram {
+    @include boxColor(var(--clr-instagram));
+  }
+}
+
+.facebook {
+  @include brands($fa-var-facebook, var(--clr-facebook));
+}
+
+.twitter {
+  @include brands($fa-var-twitter, var(--clr-twitter));
+}
+
+.youtube {
+  @include brands($fa-var-youtube, var(--clr-youtube));
+}
+
+.instagram {
+  @include brands($fa-var-instagram, var(--clr-instagram));
+}
+
+.increase {
+  color: var(--clr-success);
+  font-weight: $semibold;
+  i {
+    @include fa-icon-solid($fa-var-arrow-up);
+    @include fa-size($fa-size-scale-sm);
+  }
+}
+
+.decrease {
+  color: var(--clr-err);
+  font-weight: $semibold;
+  i {
+    @include fa-icon-solid($fa-var-arrow-down);
+    @include fa-size($fa-size-scale-sm);
+  }
+}
+
+.loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+
+  .wrapper {
+    width: 200px;
+    height: 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .circle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--clr-text);
+    left: 15%;
+    transform-origin: 50%;
+    animation: circle7124 0.5s alternate infinite ease;
+  }
+
+  @keyframes circle7124 {
+    0% {
+      top: 60px;
+      height: 5px;
+      border-radius: 50px 50px 25px 25px;
+      transform: scaleX(1.7);
+    }
+
+    40% {
+      height: 20px;
+      border-radius: 50%;
+      transform: scaleX(1);
+    }
+
+    100% {
+      top: 0%;
+    }
+  }
+
+  .circle:nth-child(2) {
+    left: 45%;
+    animation-delay: 0.2s;
+  }
+
+  .circle:nth-child(3) {
+    left: auto;
+    right: 15%;
+    animation-delay: 0.3s;
+  }
+
+  .shadow {
+    width: 20px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--clr-text);
+    position: absolute;
+    top: 62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left: 15%;
+    filter: blur(1px);
+    animation: shadow046 0.5s alternate infinite ease;
+  }
+
+  @keyframes shadow046 {
+    0% {
+      transform: scaleX(1.5);
+    }
+
+    40% {
+      transform: scaleX(1);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: scaleX(0.2);
+      opacity: 0.4;
+    }
+  }
+
+  .shadow:nth-child(4) {
+    left: 45%;
+    animation-delay: 0.2s;
+  }
+
+  .shadow:nth-child(5) {
+    left: auto;
+    right: 15%;
+    animation-delay: 0.3s;
+  }
+}

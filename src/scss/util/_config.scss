@@ -1,0 +1,114 @@
+@use "icon" as *;
+//=====COLORS======//
+:root {
+  --clr-bg: #121212;
+  --clr-text: #ffffff;
+  --clr-primary: #89d7f3;
+  --clr-neutral: #e5b760;
+
+  --clr-surface: #8a8a8a;
+  --clr-err: #ffa28a;
+  --clr-success: #8fdf9e;
+
+  //fs
+  font-size: 16px;
+  --fs-heading: clamp(1.25rem, calc(-1.25rem + 12.5vw), 1.88rem);
+  --fs-subheading: clamp(1.13rem, calc(-0.62rem + 8.75vw), 1.56rem);
+
+  //=====BRANDS-COLORS====//
+
+  --clr-facebook: #8ecdff;
+  --clr-youtube: #ffa28a;
+  --clr-instagram: #f495ac;
+  --clr-twitter: #87c7f6;
+}
+
+.light-theme {
+  --clr-input: #c2c2c2;
+  --clr-bg: #ffffff;
+  --clr-text: #121212;
+  --clr-primary: #34afe8;
+  --clr-neutral: #cc7500;
+  --clr-err: #ff0000;
+  --clr-success: #00c853;
+
+  //=====BRANDS-COLORS====//
+
+  --clr-facebook: #0098ff;
+  --clr-youtube: #ff200c;
+  --clr-instagram: #e4405f;
+  --clr-twitter: #0091f0;
+}
+
+//=========MIXINS==========//
+
+.dark-bg {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+@mixin overlay($opacity: 0.1) {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--clr-bg);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: $opacity;
+    background-color: var(--clr-text);
+  }
+}
+
+@mixin flex($fd, $gap) {
+  display: flex;
+  flex-direction: $fd;
+  gap: $gap;
+}
+
+@mixin hovered($clr) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $clr;
+    }
+  }
+}
+
+@mixin bgBeforeAfter($bg, $index) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: $bg;
+  z-index: $index;
+}
+
+@mixin boxColor($clr) {
+  border-top: 3px solid $clr;
+}
+
+@mixin brands($name, $clr) {
+  @include fa-icon-brands($name);
+  color: $clr;
+  font-size: 22px;
+}
+
+//=========FONTS=========//
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+$ff: "Montserrat", sans-serif;
+
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+
+//======STYLES=====//
+
+$card-box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+  rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+  rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;

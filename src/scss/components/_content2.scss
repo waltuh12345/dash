@@ -1,0 +1,50 @@
+@use "../util" as *;
+.content2 {
+  > h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  &-flex {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    h2 {
+      margin: 0;
+    }
+
+    &-box {
+      padding: 0 2rem;
+      margin-inline: auto;
+      min-height: 7rem;
+      display: grid;
+      gap: 1rem 0;
+      align-content: center;
+      line-height: 1;
+      font-weight: $medium;
+      font-size: 14px;
+
+      > * {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      > :nth-child(2) {
+        font-size: 12px;
+        > :last-child {
+          @include flex(row, 0.2rem);
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .content2-flex-box {
+    h2 {
+      font-size: clamp(1rem, calc(0.11rem + 2.38vw), 1.25rem);
+    }
+  }
+}
