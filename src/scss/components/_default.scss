@@ -42,10 +42,4 @@ a {
 .content2-flex,
 .content1-flex {
   @extend .child-box-overlay;
-
-  li {
-    overflow: hidden;
-    border-radius: 6px;
-    box-shadow: $card-box-shadow;
-  }
 }

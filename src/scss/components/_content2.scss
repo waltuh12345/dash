@@ -13,6 +13,11 @@
       margin: 0;
     }
 
+    li::before,
+    li::after {
+      border-radius: $card-radius;
+    }
+
     &-box {
       padding: 0 2rem;
       margin-inline: auto;
@@ -23,6 +28,8 @@
       line-height: 1;
       font-weight: $medium;
       font-size: 14px;
+      border-radius: $card-radius;
+      box-shadow: $card-box-shadow;
 
       > * {
         display: flex;

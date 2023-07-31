@@ -12,6 +12,13 @@
       font-size: var(--fs-heading);
     }
 
+    li {
+      &::before,
+      &::after {
+        border-radius: $card-radius;
+      }
+    }
+
     &-box {
       display: grid;
       place-items: center;
@@ -19,6 +26,8 @@
       min-height: 12rem;
       align-content: center;
       line-height: 1;
+      box-shadow: $card-box-shadow;
+      border-radius: $card-radius;
 
       > :nth-child(1) {
         display: flex;
