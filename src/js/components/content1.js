@@ -89,6 +89,10 @@ const observer = new IntersectionObserver((elements) => {
     element.target.addEventListener("animationstart", (e) => {
       element.target.style.opacity = "1";
     });
+
+    if (window.innerWidth <= 600 && element.isIntersecting) {
+      element.target.style.opacity = "1";
+    }
   });
 });
 
